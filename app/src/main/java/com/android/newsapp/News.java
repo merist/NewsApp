@@ -6,29 +6,29 @@ package com.android.newsapp;
 
 public class News {
 
-    private String category;
+    private String sectionName;
     private String title;
-    private long timeInMilliseconds;
+    private String publicationDate;
     private String url;
 
-    public News (String category, String newsTitle, long timeInMilliseconds, String url){
+    public News(String newsTitle, String sectionName, String publicationDate, String url) {
 
-        this.category = category;
+        this.sectionName = sectionName;
         this.title = newsTitle;
-        this.timeInMilliseconds = timeInMilliseconds;
+        this.publicationDate = publicationDate;
         this.url = url;
     }
 
-    public String getCategory() {
-        return category;
+    public String getSectionName() {
+        return sectionName;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public long getTimeInMilliseconds() {
-        return timeInMilliseconds;
+    public String getPublicationDate() {
+        return publicationDate;
     }
 
     public String getUrl() {

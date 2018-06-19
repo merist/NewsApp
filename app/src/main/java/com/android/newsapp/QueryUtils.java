@@ -36,40 +36,40 @@ public class QueryUtils {
         return url;
     }
 
-    private static List<News> extractResponseFromJson (String newsJSON){
-        if(TextUtils.isEmpty(newsJSON)){
+    private static List<News> extractResponseFromJson(String newsJSON) {
+        if (TextUtils.isEmpty(newsJSON)) {
             return null;
         }
         List<News> newsList = new ArrayList<>();
 
         try {
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
-            JSONArray NewsArray = baseJsonResponse.getJSONArray("response");
+            JSONObject responseObject = baseJsonResponse.getJSONObject("response");
+            JSONArray resultsArray = responseObject.getJSONArray("results");
 
-            for (int i = 0; i < NewsArray.length(); i++) {
+            for (int i = 0; i < resultsArray.length(); i++) {
 
-                JSONObject currentNews = NewsArray.getJSONObject(i);
-
-                JSONObject results = currentNews.getJSONObject("results");
+                JSONObject results = resultsArray.getJSONObject(i);
 
                 String webTitle = results.getString("webTitle");
 
                 String sectionName = results.getString("sectionName");
 
-                long webPublicationDate = results.getLong("webPublicationDate");
+                String webPublicationDate = results.getString("webPublicationDate");
 
-                String url = results.getString("url");
+                String url = results.getString("webUrl");
 
                 News news = new News(webTitle, sectionName, webPublicationDate, url);
 
                 newsList.add(news);
             }
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             Log.e(LOG_TAG, MainActivity.getAppContext().getResources().getString(R.string.problem_parsing_json), e);
         }
         return newsList;
     }
-    public static List<News> getNewsData (String requestUrl){
+
+    public static List<News> getNewsData(String requestUrl) {
 
         URL url = createUrl(requestUrl);
 

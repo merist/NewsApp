@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         NetworkInfo networkInfo = connectivityManagerr.getActiveNetworkInfo();
 
-        if(networkInfo != null && networkInfo.isConnected()){
+        if (networkInfo != null && networkInfo.isConnected()) {
 
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
-        }else{
+        } else {
             View LoadingIndicator = findViewById(R.id.loading_spinner);
 
             emptyStateTextView.setText(R.string.no_connection);
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         adapter.clear();
 
         // check if there are articles then show them
-        if (newsList != null && !newsList.isEmpty()){
+        if (newsList != null && !newsList.isEmpty()) {
             adapter.addAll(newsList);
         } else {
             emptyStateTextView.setText(R.string.no_data);
