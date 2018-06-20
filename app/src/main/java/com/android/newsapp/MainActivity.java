@@ -21,7 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<News>> {
 
     // URL to query the News feed information
-    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?api-key=b700ad8f-4fd6-40ae-b5fa-c6dfe1d50031";
+    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=b700ad8f-4fd6-40ae-b5fa-c6dfe1d50031";
     private static final int NEWS_LOADER_ID = 1;
     private NewsAdapter adapter;
     private TextView emptyStateTextView;
@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
         } else {
-            View LoadingIndicator = findViewById(R.id.loading_spinner);
-
             emptyStateTextView.setText(R.string.no_connection);
         }
     }

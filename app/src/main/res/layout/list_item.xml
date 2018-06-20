@@ -29,6 +29,9 @@
         style="@style/NormalText">
     </TextView>
 
-
+    <TextView
+        android:id="@+id/news_author"
+        style="@style/NormalText">
+    </TextView>
 
 </LinearLayout>

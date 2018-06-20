@@ -26,6 +26,10 @@ public class QueryUtils {
 
     public static final String LOG_TAG = QueryUtils.class.getName();
 
+    public static final Integer READ_TIME_OUT  = 10000;
+
+    public static final Integer CONNECTION_TIME_OUT  = 15000;
+
     private static URL createUrl(String stringUrl) {
         URL url = null;
         try {
@@ -59,7 +63,16 @@ public class QueryUtils {
 
                 String url = results.getString("webUrl");
 
-                News news = new News(webTitle, sectionName, webPublicationDate, url);
+                String author = "";
+
+                JSONArray tagsArray = results.getJSONArray("tags");
+                // Iterate through the tags to find the author
+                for (int j = 0; j < tagsArray.length(); j++) {
+                    JSONObject tagObject = tagsArray.getJSONObject(j);
+                    author = tagObject.getString("webTitle");
+                }
+
+                News news = new News(webTitle, sectionName, webPublicationDate, url, author);
 
                 newsList.add(news);
             }
@@ -95,8 +108,8 @@ public class QueryUtils {
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(READ_TIME_OUT);
+            urlConnection.setConnectTimeout(CONNECTION_TIME_OUT);
             urlConnection.connect();
             inputStream = urlConnection.getInputStream();
             jsonResponse = readFromStream(inputStream);
