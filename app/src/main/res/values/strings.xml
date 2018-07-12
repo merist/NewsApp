@@ -6,4 +6,21 @@
     <string name="problem_parsing_json">Problem parsing the news JSON results</string>
     <string name="problem_http_request">Problem making the HTTP request.</string>
     <string name="problem_building_url">Problem building the URL</string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">News Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="settings_search_text_label">Search text</string>
+    <string name="settings_search_text_key" translatable="false">searchText</string>
+    <string name="settings_search_text_default" translatable="false">Sport</string>
+
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_most_recent_value</string>
+
+    <string name="settings_order_by_oldest_label">Oldest</string>
+    <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
+
+    <string name="settings_order_by_most_recent_label">Newest</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">newest</string>
 </resources>
